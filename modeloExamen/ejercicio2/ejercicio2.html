@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        h3{
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather API</h1>
+    <p>Introduce el nombre el nombre de una ciudad:</p>
+    <input type="text" id="ciudad">
+    <button id="boton-enviar">Enviar</button>
+    <p id="resultado"></p>
+<script>
+
+$(document).ready(function(){
+
+    $("#boton-enviar").click(function(){
+    var ciudad = $("#ciudad").val();
+    if(ciudad==""){
+        $("#resultado").html("Por favor, introduzca un valor.");
+    }
+    else{
+        let apiKey= "f8a124b4ba54c4b8a3d72f8f194c3311";
+        $.ajax({
+            url: "http://api.openweathermap.org/geo/1.0/direct?q="+ciudad+"&appid="+apiKey,
+            success: function(data){
+                $("#resultado").html("<div><h3>"+data[0].name+"</h3><p><b>Longitud:</b> "+data[0].lon+"</p><p><b>Latitud:</b> "+data[0].lat+"</div>");
+            },
+            error: function(){
+                $("#resultado").html("Hubo un error de conexión");
+            }
+        }).fail(function(){
+            $("#resultado").html("Error de ajax.");
+        });
+    }
+    })
+});
+
+</script>
+</body>
+</html>
