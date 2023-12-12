@@ -1,6 +1,3 @@
-validar();
-
-
 function validar(){
-
+    
 }
