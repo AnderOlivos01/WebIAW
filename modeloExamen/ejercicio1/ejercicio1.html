@@ -5,30 +5,29 @@
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Formulario de Contacto</title>
     <link rel="stylesheet" href="ejercicio1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>Formulario de Contacto</h1>
-    <form action="">
-
         <div class="fila">
             <label for="">Asunto*:</label>
             <input type="text" id="asunto" class="required">
-            <p class="alerta-asunto"></p>
+            <p id="alerta_asunto"></p>
         </div>
         <div class="fila">
             <label for="">DNI/NIE*:</label>
             <input type="text" id="dni" class="required">
-            <p class="alerta-dni"></p>
+            <p id="alerta_dni"></p>
         </div>
         <div class="fila">
             <label for="">Nombre*:</label>
             <input type="text" id="nombre" class="required">
-            <p class="alerta-nombre"></p>
+            <p id="alerta_nombre"></p>
         </div>
         <div class="fila">
             <label for="">Primer apellido*:</label>
             <input type="text" id="apellido" class="required">
-            <p class="alerta-apellido"></p>
+            <p id="alerta_apellido"></p>
         </div>
         <div class="fila">
             <label for="">Segundo apellido:</label>
@@ -37,27 +36,27 @@
         <div class="fila">
             <label for="">Fecha de Nacimiento: (dd/mm/yyyy)*:</label>
             <input type="text" id="f_nacimiento" class="required">
-            <p class="alerta-f_nacimiento"></p>
+            <p id="alerta_f_nacimiento"></p>
         </div>
         <div class="fila">
             <label for="">Teléfono de contacto:</label>
             <input type="text" id="telefono" class="required">
-            <p class="alerta-telefono"></p>
+            <p id="alerta_telefono"></p>
         </div>
         <div class="fila">
             <label for="">Correo Electrónico (para respuesta):</label>
             <input type="email">
-            <p class="alerta-email"></p>
+            <p id="alerta_email"></p>
         </div>
         <div class="fila">
             <label for="">Domicilio*:</label>
             <input type="text" id="domicilio" class="required">
-            <p class="alerta-domicilio"></p>
+            <p id="alerta_domicilio"></p>
         </div>
         <div class="fila">
             <label for="">Código Postal*:</label>
             <input type="text" id="postal" class="required">
-            <p class="alerta-postal"></p>
+            <p id="alerta_postal"></p>
         </div>
         <div class="fila">
             <label for="provincia">Provincia*:</label>
@@ -115,7 +114,7 @@
                 <option value="Zamora">Zamora</option>
                 <option value="Zaragoza">Zaragoza</option>
               </select>
-            <p class="alerta-provincia"></p>
+            <p id="alerta_provincia"></p>
         </div>
         <div class="fila">
             <label for="">Oficina*:</label>
@@ -125,31 +124,31 @@
                 <option value="oficina1">Oficina 3</option>
                 <option value="oficina1">Oficina 4</option>
             </select>
-            <p class="alerta-oficina"></p>
+            <p id="alerta_oficina"></p>
         </div>
         <div class="fila">
             <label for="">Información requerida*:</label>
-            <textarea name="informacion_requerida" id="informacion" class="required" cols="60" rows="10"></textarea>
-            <p class="alerta-informacion"></p>
+            <textarea name="informacion_requerida" id="informacion_requerida" class="required" cols="60" rows="10"></textarea>
+            <p id="alerta_informacion_requerida"></p>
         </div>
         <div class="fila">
             <label for="">Fichero Anexo I (máximo 2MB):</label>
             <input type="file" id="fichero1">
-            <p class="alerta-fichero1"></p>
+            <p id="alerta_fichero1"></p>
         </div>
         <div class="fila">
             <label for="">Fichero Anexo II (máximo 2MB):</label>
             <input type="file" id="fichero2">
-            <p class="alerta-fichero2"></p>
+            <p id="alerta_fichero2"></p>
         </div>
 
         <div class="fila">
             <input type="checkbox" name="politicas" id="politicas" class="required">
             <p>He leído y acepto la política de datos y normas de uso *</p>
-            <p class="alerta"></p>
+            <p id="alerta_politicas"></p>
         </div>
         <button onclick="validar()">Enviar</button>
-    </form>
+
 <script src="ejercicio1.js"></script>
 </body>
 </html>

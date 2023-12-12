@@ -1,6 +1,12 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: small;
+    font-size: 10px;
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+
+p{
+    font-size: x-small;
 }
 form{
     display: flex;
