@@ -26,6 +26,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $usuario=htmlspecialchars($_POST['usuario']);
         $contrasena=htmlspecialchars($_POST['contrasena']);
+        $contrasena=password_hash($contrasena,PASSWORD_DEFAULT);
         $fullname=htmlspecialchars($_POST['completo']);
         $email=htmlspecialchars($_POST['email']);
 
@@ -41,13 +42,15 @@
                 $insert = mysqli_query($mysqli,$query);
                 if($insert){
                     $subject = "¡Enhorabuena! Te has registrado con éxito.";
-                    $txt = "<p>Tus datos son los siguientes:</p>";
-                    $headers = "From: andersonolivos01@iesamachado.org" . "\r\n" .
-                    "CC: ".$email;
+                    $txt = "<h3>Tus datos son los siguientes:</h3>";
+                    $txt .= "<p><strong>Usuario: </strong>".$usuario."</p>";
+                    $txt .= "<p><strong>Nombre completo: </strong>".$fullname."</p>";
+                    $txt .= "<p><strong>Email: </strong>".$email."</p>";
+                    $headers = "From: andersonolivos01@iesamachado.org \r\n CC: ".$email;
 
                     mail($email,$subject,$txt,$headers);
 
-                    echo "<p><strong>Se ha registrado con éxito: </strong>revise su correo y verifique sus datos.</p>";
+                    echo "<p><strong>Se ha registrado con éxito: </strong>revise su correo y verifique sus datos, gracias.</p>";
                 }
                 else{
                     echo "<p><strong>Error: </strong>conexión fallida.";
