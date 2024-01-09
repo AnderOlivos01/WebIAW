@@ -11,7 +11,7 @@
 <body>
     <div id="container-father" class="center">
         <div id="child1" class="center">
-            <img src="media/icon-pequeno.png" alt="hubo un error al cargar la imagen">
+            <img src="media/icon-pequeno.png" alt="hubo un error">
             <h1 class="incidencias">Incidencias <br> Informáticas</h1>
             <h4 class="machado">I.E.S. Antonio Machado</h4>
 
@@ -26,7 +26,7 @@
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    $usuario=htmlspecialchars($_POST["usuario"]);
+    $usuario=mb_strtolower(htmlspecialchars($_POST["usuario"]));
     $contrasena=htmlspecialchars($_POST["contrasena"]);
     if(!empty($usuario) && !empty($contrasena)){
         include 'conexion.php';
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $verifica_contrasena=mysqli_query($mysqli,$query_contrasena);
             $contrasena_bd=mysqli_fetch_array($verifica_contrasena);
             if(password_verify($contrasena,$contrasena_bd[0])){
-                echo "<p><strong id='correcto'>Login correcto.</strong> Bienvenido ".$usuario.".</p>";
+                echo '<script type="text/javascript" src="login.js">welcome_function('.$usuario.');</script>';
             }
             else{
                 echo "<p><strong class='error_login'>Error: </strong>usuario o contraseña incorrecta.</p>";
@@ -55,6 +55,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
             </form>
         </div>
+
+        <div id="child2">
+            <div class="absoluto">
+                <img id="img_carga" src="media/icon-pequeno.png" alt="hubo un error">
+                <div id="loader">
+                    <svg id="circle">
+                      <circle cx="50%" cy="50%" r="48%" />
+                    </svg>
+                </div>
+            </div>
+            <h3 id="welcome"></h3>
+        </div>
+
     </div>
 </body>
 </html>
