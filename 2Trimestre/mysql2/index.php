@@ -10,6 +10,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
+
+<?php 
+    session_destroy();
+?>
+
 <script src="login.js"></script>
     <div id="container-father" class="center">
         <div id="child1" class="center">
@@ -20,6 +25,7 @@
             <!--LOG IN -->
 
             <form action="" id="login" method="POST">
+                <input type="hidden" name="vienedelform" value="si" />
                 <p><strong>Usuario</strong></p>
                 <input class="input-form" type="text" name="usuario">
                 <p><strong>Contraseña</strong></p>
@@ -27,6 +33,7 @@
                 <input id="button-entrar" type="submit" value="Acceder">
 
 <?php
+
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $usuario=mb_strtolower(htmlspecialchars($_POST["usuario"]));
     $contrasena=htmlspecialchars($_POST["contrasena"]);
@@ -39,7 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $verifica_contrasena=mysqli_query($mysqli,$query_contrasena);
             $contrasena_bd=mysqli_fetch_array($verifica_contrasena);
             if(password_verify($contrasena,$contrasena_bd[0])){
-                header('Location: http://anderolivos.thsite.top/mysql2/app/app.php');
+                session_set_cookie_params(120);
+                session_start();
+                $_SESSION['usuario']=$usuario;
+                $_SESSION['viene']=$_POST['vienedelform'];
+                header('Location: http://anderolivos.thsite.top/mysql2/app/');
                 die();
             }
             else{
@@ -54,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         echo "<p><strong class='error_login'>Error: </strong>rellene todos los campos.</p>";
     }
 }
+
 ?>
 
             </form>

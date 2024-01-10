@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    font-family: Tahoma;
+    font-family: Arial;
 }
 
 .center{
@@ -27,16 +27,16 @@ body{
 }
 
 .carga{
-    background-color: white;
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+  background-color: white;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
 }
 
 #img_carga{
@@ -72,7 +72,9 @@ body{
   transform: rotate(-90deg);
 }
 
-
+#welcome{
+  color: white;
+}
 
 #container_father{
     display: none;
@@ -81,4 +83,47 @@ body{
 .display_father{
   display: flex !important;
   flex-direction: column;
+  background-color: white;
+}
+
+#cabecera{
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: rgb(59, 77, 97);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 20px 4px 20px;
+  color: white;
+}
+
+.row_cabecera{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#usuario_cabecera>img{
+  width: 40px;
+  height: auto;
+}
+
+#usuario_cabecera>h3{
+  margin: 0 0 0 10px;
+}
+
+
+#exit_cabecera>a>img{
+  width: 40px;
+  height: auto;
+}
+
+#exit_cabecera>p{
+  margin-right: 10px;
+}
+
+#titulo_cabecera>h3{
+  margin: 0;
 }
