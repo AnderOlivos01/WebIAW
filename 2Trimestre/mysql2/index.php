@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="index.css">
     <link rel="shortcut icon" href="media/icon-pequeno.png" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -50,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 session_start();
                 $_SESSION['usuario']=$usuario;
                 $_SESSION['viene']=$_POST['vienedelform'];
-                header('Location: http://anderolivos.thsite.top/mysql2/app/');
+                header('Location: http://anderolivos.thsite.top/mysql2/app/app.php');
                 die();
             }
             else{

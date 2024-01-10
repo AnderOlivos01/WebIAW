@@ -7,7 +7,9 @@
     <title>Incidencias Informáticas - IES Antonio Machado</title>
     <link rel="shortcut icon" href="../media/icon-pequeno.png" type="image/x-icon">
     <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <?php include('verifica_session.php'); ?>
@@ -27,21 +29,23 @@
     <!--APLIACIÓN-->
 
     <div id="container_father">
-        <div id="cabecera">
-            <div id="usuario_cabecera" class="row_cabecera">
-                <img src="../media/icon-user.png" alt="hubo un error">
-                <h3><?php echo "$usuario"?></h3>
+        <nav id="navegador" class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <a class="navbar-brand" target="_blank" href="https://iesamachado.es/">IES Antonio Machado</a>
+                </div>
+                <ul class="nav navbar-nav">
+                <li class="active"><a href="http://anderolivos.thsite.top/mysql2/app/app.php">Inicio</a></li>
+                <li><a href="#">Crear incidencia</a></li>
+                <li><a href="#">Incidencias resueltas</a></li>
+                <li><a href="#">Incidencias pendientes</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://anderolivos.thsite.top/mysql2/app/app.php"><span class="glyphicon glyphicon-user"></span><?php echo "$usuario"?></a></li>
+                <li><a href="http://anderolivos.thsite.top/mysql2/index.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
+                </ul>
             </div>
-
-            <div id="titulo_cabecera">
-                <h3>INCIDENCIAS INFORMÁTICAS</h3>
-            </div>
-
-            <div id="exit_cabecera" class="row_cabecera">
-                <p>Cerrar sesión</p>
-                <a href="http://anderolivos.thsite.top/mysql2/index.php"><img src="../media/icon-exit.png" alt="hubo un error"></a>
-            </div>
-        </div>
+        </nav> 
         <div id="child1">
             <h3>Incidencias</h3>
         </div>
