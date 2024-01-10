@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido</title>
-    <link rel="shortcut icon" href="media/icon-pequeno.png" type="image/x-icon">
-    <link rel="stylesheet" href="panel.css">
+    <meta HTTP-EQUIV="Expires" CONTENT="no-cache">
+    <title>Incidencias Informáticas - IES Antonio Machado</title>
+    <link rel="shortcut icon" href="../media/icon-pequeno.png" type="image/x-icon">
+    <link rel="stylesheet" href="app.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-    <div id="entrada">
+    <div id="entrada" class="center">
             <div class="absoluto">
-                <img id="img_carga" src="media/icon-pequeno.png" alt="hubo un error">
+                <img id="img_carga" src="../media/fix.gif" alt="hubo un error">
                 <div id="loader">
                     <svg id="circle">
                       <circle cx="50%" cy="50%" r="48%" />
                     </svg>
                 </div>
             </div>
-            <h3 id="welcome"></h3>
     </div>
     <div id="container_father">
         <div id="child1">
@@ -27,5 +28,7 @@
     <div id="container_mas">
         <div id="mas">+</div>
     </div>
+
+<script src="app.js"></script>
 </body>
 </html>

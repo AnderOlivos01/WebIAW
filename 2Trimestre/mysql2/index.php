@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incidencias Informáticas</title>
+    <meta HTTP-EQUIV="Expires" CONTENT="no-cache">
+    <title>Incidencias Informáticas - IES Antonio Machado</title>
     <link rel="stylesheet" href="index.css">
     <link rel="shortcut icon" href="media/icon-pequeno.png" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -38,7 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $verifica_contrasena=mysqli_query($mysqli,$query_contrasena);
             $contrasena_bd=mysqli_fetch_array($verifica_contrasena);
             if(password_verify($contrasena,$contrasena_bd[0])){
-                echo "<script>welcome_function($usuario)</script>";
+                header('Location: http://anderolivos.thsite.top/mysql2/app/app.php');
+                die();
             }
             else{
                 echo "<p><strong class='error_login'>Error: </strong>usuario o contraseña incorrecta.</p>";
