@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incidencias Informáticas - IES Antonio Machado</title>
+    <link rel="shortcut icon" href="../media/icon-pequeno.png" type="image/x-icon">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="crear.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<?php include('verifica_session.php'); ?>
+
+    <nav id="navegador" class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <a class="navbar-brand" target="_blank" href="https://iesamachado.es/">IES Antonio Machado</a>
+            </div>
+            <ul class="nav navbar-nav">
+            <li><a href="app.php">Inicio</a></li>
+            <li class="active"><a href="crear.php">Crear incidencia</a></li>
+            <li><a href="#incidencia-resuelta">Incidencias resueltas</a></li>
+            <li><a href="#incidencia-pendiente">Incidencias pendientes</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="app.php"><span class="glyphicon glyphicon-user"></span><?php echo "$usuario"?></a></li>
+            <li><a href="../index.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+<div id="container-crea-incidencia">
+            <h3>Crea una incidencia</h3>
+            <form id="form-crea" method="POST" action="">
+                <div class="form-row">
+                  <div class="form-group col-md-2">
+                    <label for="planta">Planta <span class="obligatorio">(*)</span></label>
+                    <select class="form-control form-control-sm" name="planta" id="form-planta" required>
+                        <option default value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="aula">Aula <span class="obligatorio">(*)</span></label>
+                    <select class="form-control form-control-sm" name="aula" id="form-aula" required>
+                        <option default value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label for="inputAddress">Descripción <span class="obligatorio">(*)</span></label>
+                        <input type="text" class="form-control" id="form-descripcion" required name="descripcion" placeholder="La luz no funciona...">
+                      </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="inputAddress2">Fecha Alta <span class="obligatorio">(*)</span></label>
+                        <input class="form-control form-control-sm" type="date" id="f_alta" name="f_alta" min="" required>
+                      </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="inputCity">Fecha Revisión</label>
+                        <input class="form-control form-control-sm" type="date" name="f_revision">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="inputCity">Fecha Solución</label>
+                        <input class="form-control form-control-sm" type="date" name="f_solucion">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="inputCity">Comentario</label>
+                        <input type="text" class="form-control" id="form-comentario" name="comentario" placeholder="Todo solucionado...">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-10">
+                        <button type="submit" class="btn btn-primary">Crear</button>
+                    </div>
+                </div>
+              </form>
+        </div>
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $planta=htmlspecialchars($_POST["planta"]);
+    $aula=htmlspecialchars($_POST["aula"]);
+    $descripcion=htmlspecialchars($_POST["descripcion"]);
+    $f_alta=htmlspecialchars($_POST["f_alta"]);
+    $f_rev=htmlspecialchars($_POST["f_revision"]);
+    $f_sol=htmlspecialchars($_POST["f_solucion"]);
+    $comentario=htmlspecialchars($_POST["comentario"]);
+    if($f_rev==""){
+        $f_rev=NULL;
+    }
+    if($f_sol==""){
+        $f_sol=NULL;
+    }
+    if($comentario==""){
+        $comentario=NULL;
+    }
+
+    if(!empty($planta) && !empty($aula) && !empty($descripcion) && !empty($f_alta)){
+        include 'conexion.php';
+        $crea_incidencia="INSERT INTO incidencia VALUES ('".$planta."','".$aula."','".$descripcion."','".$f_alta."','".$f_rev."','".$f_sol."','".$comentario."')";
+        $añadido=mysqli_query($mysqli,$crea_incidencia);
+        if (!$añadido) {
+            die('Error en la consulta: ' . mysqli_error($mysqli));
+        }
+        mysqli_close($mysqli);
+        echo "<p>Añadido con éxito</p>";
+    }
+    else{
+        echo "<p><strong class='error_login'>Error: </strong>rellene los campos obligatorios.</p>";
+    }
+}
+?>
+<script>
+    var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById('f_alta').min = today;
+</script>
+</body>
+</html>

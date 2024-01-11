@@ -13,7 +13,9 @@
 <body>
 
 <?php 
+    session_start();
     session_destroy();
+    session_unset();
 ?>
 
 <script src="login.js"></script>

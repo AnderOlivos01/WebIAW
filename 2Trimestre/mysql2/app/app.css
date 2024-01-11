@@ -86,44 +86,6 @@ body{
   background-color: white;
 }
 
-#cabecera{
-  position: sticky;
-  top: 0;
-  left: 0;
-  background-color: rgb(59, 77, 97);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 4px 20px 4px 20px;
-  color: white;
-}
-
-.row_cabecera{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-#usuario_cabecera>img{
-  width: 40px;
-  height: auto;
-}
-
-#usuario_cabecera>h3{
-  margin: 0 0 0 10px;
-}
-
-
-#exit_cabecera>a>img{
-  width: 40px;
-  height: auto;
-}
-
-#exit_cabecera>p{
-  margin-right: 10px;
-}
-
-#titulo_cabecera>h3{
-  margin: 0;
+#navegador{
+  border-radius: 0 !important;
 }

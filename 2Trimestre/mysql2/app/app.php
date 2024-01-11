@@ -7,6 +7,7 @@
     <title>Incidencias Informáticas - IES Antonio Machado</title>
     <link rel="shortcut icon" href="../media/icon-pequeno.png" type="image/x-icon">
     <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="crear_incidencia.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -35,10 +36,10 @@
                 <a class="navbar-brand" target="_blank" href="https://iesamachado.es/">IES Antonio Machado</a>
                 </div>
                 <ul class="nav navbar-nav">
-                <li class="active"><a href="http://anderolivos.thsite.top/mysql2/app/app.php">Inicio</a></li>
-                <li><a href="#">Crear incidencia</a></li>
-                <li><a href="#">Incidencias resueltas</a></li>
-                <li><a href="#">Incidencias pendientes</a></li>
+                <li class="active"><a href="#container-incidencias">Inicio</a></li>
+                <li><a href="crear.php">Crear incidencia</a></li>
+                <li><a href="#incidencia-resuelta">Incidencias resueltas</a></li>
+                <li><a href="#incidencia-pendiente">Incidencias pendientes</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                 <li><a href="http://anderolivos.thsite.top/mysql2/app/app.php"><span class="glyphicon glyphicon-user"></span><?php echo "$usuario"?></a></li>
@@ -46,14 +47,19 @@
                 </ul>
             </div>
         </nav> 
-        <div id="child1">
+        <div id="container-incidencias">
+            <div id="incidencia-todo">
+                <h3>Todas las incidencias</h3>
+            </div>
+            <div id="incidencia-pendiente">
+                <h3>Incidencias pendientes</h3>
+            </div>
+            <div id="incidencia-resuelta">
+                <h3>Incidencias resueltas</h3>
+            </div>
             <h3>Incidencias</h3>
         </div>
     </div>
-    <div id="container_mas">
-        <div id="mas">+</div>
-    </div>
-
 <script src="app.js"></script>
 </body>
 </html>
