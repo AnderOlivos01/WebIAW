@@ -32,7 +32,7 @@
         </nav> 
     <div id="container-incidencias">
     <div id="container-incidencia-pendiente">
-            <h2>Incidencias pendientes</h2>
+            <h2 class="texto-centrado">Incidencias pendientes</h2>
                 <?php
                     include('../conexion.php');
                     $consulta_pendiente='SELECT * FROM incidencia WHERE f_sol is NULL';

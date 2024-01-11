@@ -27,14 +27,14 @@
                 <li><a href="pendiente.php">Incidencias pendientes</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://anderolivos.thsite.top/mysql2/app/app.php"><span class="glyphicon glyphicon-user"></span><?php echo "$usuario"?></a></li>
-                <li><a href="http://anderolivos.thsite.top/mysql2/index.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
+                <li><a href="app.php"><span class="glyphicon glyphicon-user"></span><?php echo "$usuario"?></a></li>
+                <li><a href="../index.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
                 </ul>
             </div>
         </nav> 
         <div id="container-incidencias">
             <div id="container-incidencia-todo">
-                <h2>Todas las incidencias</h2>
+                <h2 class="texto-centrado">Todas las incidencias</h2>
                 <?php
                     include('../conexion.php');
                     $todas_consultas='SELECT * FROM incidencia';
@@ -75,7 +75,7 @@
                 ?>
             </div>
             <div id="container-incidencia-pendiente">
-            <h2>Incidencias pendientes</h2>
+            <h2 class="texto-centrado">Incidencias pendientes</h2>
                 <?php
                     $consulta_pendiente='SELECT * FROM incidencia WHERE f_sol is NULL';
                     $res_consulta_pendiente=mysqli_query($mysqli,$consulta_pendiente);
@@ -115,7 +115,7 @@
                 ?>            
             </div>
             <div id="incidencia-resuelta">
-            <h2>Incidencias resueltas</h2>
+            <h2 class="texto-centrado">Incidencias resueltas</h2>
                 <?php
                     $resuelta_consultas='SELECT * FROM incidencia WHERE f_sol is not NULL';
                     $res_resuelta_consultas=mysqli_query($mysqli,$resuelta_consultas);

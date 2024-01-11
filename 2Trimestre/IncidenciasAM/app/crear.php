@@ -36,7 +36,7 @@
             <img src="../media/icon-correcto.png" alt="hubo un error">
             <h3>Incidencia creada</h3>
         </div>
-            <h3>Crea una incidencia</h3>
+            <h2>Crear incidencia</h2>
             <form id="form-crea" method="POST" action="">
                 <div class="form-row">
                   <div class="form-group col-md-2">
@@ -93,7 +93,7 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-10">
-                        <button type="submit" class="btn btn-primary">Crear</button>
+                        <button type="submit" class="btn btn-success">Crear</button>
                     </div>
                 </div>
               </form>

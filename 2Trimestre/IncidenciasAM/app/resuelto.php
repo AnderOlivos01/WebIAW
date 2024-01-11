@@ -32,7 +32,7 @@
         </nav> 
     <div id="container-incidencias">
     <div id="incidencia-resuelta">
-            <h2>Incidencias resueltas</h2>
+            <h2 class="texto-centrado">Incidencias resueltas</h2>
                 <?php
                     include('../conexion.php');
                     $resuelta_consultas='SELECT * FROM incidencia WHERE f_sol is not NULL';
