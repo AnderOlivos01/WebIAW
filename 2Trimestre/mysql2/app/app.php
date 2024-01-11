@@ -7,26 +7,11 @@
     <title>Incidencias Informáticas - IES Antonio Machado</title>
     <link rel="shortcut icon" href="../media/icon-pequeno.png" type="image/x-icon">
     <link rel="stylesheet" href="app.css">
-    <link rel="stylesheet" href="crear_incidencia.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
 <body>
 <?php include('verifica_session.php'); ?>
-    <div id="entrada" class="center">
-            <div class="absoluto">
-                <img id="img_carga" src="../media/fix.gif" alt="hubo un error">
-                <div id="loader">
-                    <svg id="circle">
-                      <circle cx="50%" cy="50%" r="48%" />
-                    </svg>
-                </div>
-            </div>
-            <h3 id="welcome"><?php echo "Bienvenido $usuario";?></h3>
-    </div>
-
-
     <!--APLIACIÓN-->
 
     <div id="container_father">
@@ -38,8 +23,8 @@
                 <ul class="nav navbar-nav">
                 <li class="active"><a href="#container-incidencias">Inicio</a></li>
                 <li><a href="crear.php">Crear incidencia</a></li>
-                <li><a href="#incidencia-resuelta">Incidencias resueltas</a></li>
-                <li><a href="#incidencia-pendiente">Incidencias pendientes</a></li>
+                <li><a href="resuelto.php">Incidencias resueltas</a></li>
+                <li><a href="pendiente.php">Incidencias pendientes</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                 <li><a href="http://anderolivos.thsite.top/mysql2/app/app.php"><span class="glyphicon glyphicon-user"></span><?php echo "$usuario"?></a></li>
@@ -48,18 +33,128 @@
             </div>
         </nav> 
         <div id="container-incidencias">
-            <div id="incidencia-todo">
-                <h3>Todas las incidencias</h3>
+            <div id="container-incidencia-todo">
+                <h2>Todas las incidencias</h2>
+                <?php
+                    include('../conexion.php');
+                    $todas_consultas='SELECT * FROM incidencia';
+                    $res_todas_consultas=mysqli_query($mysqli,$todas_consultas);
+                    if($res_todas_consultas->num_rows>0){
+                        echo "<table class='table'>
+                        <thead class='thead-dark'>
+                            <tr>
+                            <th scope='col'>ID</th>
+                            <th scope='col'>Aula</th>
+                            <th scope='col'>Planta</th>
+                            <th scope='col'>Descripción</th>
+                            <th scope='col'>Alta</th>
+                            <th scope='col'>Revisión</th>
+                            <th scope='col'>Solucionado</th>
+                            <th scope='col'>Comentario</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+                        for($i=0;$i<$res_todas_consultas->num_rows;$i++){
+                            $fila = $res_todas_consultas->fetch_assoc();
+                            echo "<tr>
+                            <th scope='row'>".$fila['id']."</th>
+                            <td>".$fila['aula']."</td>
+                            <td>".$fila['planta']."</td>
+                            <td>".$fila['descripcion']."</td>
+                            <td>".$fila['f_alta']."</td>
+                            <td>".$fila['f_rev']."</td>
+                            <td>".$fila['f_sol']."</td>
+                            <td>".$fila['comentario']."</td>
+                            </tr>";                     
+                        }
+                        echo "</tbody>
+                            </table>";  
+                    }else{
+                        echo "<p>No hay ninguna incidencia</p>";
+                    }
+                ?>
             </div>
-            <div id="incidencia-pendiente">
-                <h3>Incidencias pendientes</h3>
+            <div id="container-incidencia-pendiente">
+            <h2>Incidencias pendientes</h2>
+                <?php
+                    $consulta_pendiente='SELECT * FROM incidencia WHERE f_sol is NULL';
+                    $res_consulta_pendiente=mysqli_query($mysqli,$consulta_pendiente);
+                    if($res_consulta_pendiente->num_rows>0){
+                        echo "<table class='table'>
+                        <thead class='thead-dark'>
+                            <tr>
+                            <th scope='col'>ID</th>
+                            <th scope='col'>Aula</th>
+                            <th scope='col'>Planta</th>
+                            <th scope='col'>Descripción</th>
+                            <th scope='col'>Alta</th>
+                            <th scope='col'>Revisión</th>
+                            <th scope='col'>Solucionado</th>
+                            <th scope='col'>Comentario</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+                        for($i=0;$i<$res_consulta_pendiente->num_rows;$i++){
+                            $fila_pendiente = $res_consulta_pendiente->fetch_assoc();
+                            echo "<tr>
+                            <th scope='row'>".$fila_pendiente['id']."</th>
+                            <td>".$fila_pendiente['aula']."</td>
+                            <td>".$fila_pendiente['planta']."</td>
+                            <td>".$fila_pendiente['descripcion']."</td>
+                            <td>".$fila_pendiente['f_alta']."</td>
+                            <td>".$fila_pendiente['f_rev']."</td>
+                            <td>".$fila_pendiente['f_sol']."</td>
+                            <td>".$fila_pendiente['comentario']."</td>
+                            </tr>";                     
+                        }
+                        echo "</tbody>
+                            </table>";  
+                    }else{
+                        echo "<p>No hay incidencias pendientes</p>";
+                    }
+                ?>            
             </div>
             <div id="incidencia-resuelta">
-                <h3>Incidencias resueltas</h3>
+            <h2>Incidencias resueltas</h2>
+                <?php
+                    $resuelta_consultas='SELECT * FROM incidencia WHERE f_sol is not NULL';
+                    $res_resuelta_consultas=mysqli_query($mysqli,$resuelta_consultas);
+                    if($res_resuelta_consultas->num_rows>0){
+                        echo "<table class='table'>
+                        <thead class='thead-dark'>
+                            <tr>
+                            <th scope='col'>ID</th>
+                            <th scope='col'>Aula</th>
+                            <th scope='col'>Planta</th>
+                            <th scope='col'>Descripción</th>
+                            <th scope='col'>Alta</th>
+                            <th scope='col'>Revisión</th>
+                            <th scope='col'>Solucionado</th>
+                            <th scope='col'>Comentario</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+                        for($i=0;$i<$res_resuelta_consultas->num_rows;$i++){
+                            $fila_resuelta = $res_resuelta_consultas->fetch_assoc();
+                            echo "<tr>
+                            <th scope='row'>".$fila_resuelta['id']."</th>
+                            <td>".$fila_resuelta['aula']."</td>
+                            <td>".$fila_resuelta['planta']."</td>
+                            <td>".$fila_resuelta['descripcion']."</td>
+                            <td>".$fila_resuelta['f_alta']."</td>
+                            <td>".$fila_resuelta['f_rev']."</td>
+                            <td>".$fila_resuelta['f_sol']."</td>
+                            <td>".$fila_resuelta['comentario']."</td>
+                            </tr>";                     
+                        }
+                        echo "</tbody>
+                            </table>";  
+                    }else{
+                        echo "<p>No hay incidencias resueltas</p>";
+                    }
+                ?>
             </div>
-            <h3>Incidencias</h3>
         </div>
     </div>
-<script src="app.js"></script>
 </body>
 </html>

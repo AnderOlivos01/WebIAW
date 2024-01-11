@@ -18,7 +18,17 @@
     session_unset();
 ?>
 
-<script src="login.js"></script>
+<div id="entrada">
+    <div class="absoluto">
+        <img id="img_carga" src="media/fix.gif" alt="hubo un error">
+        <div id="loader">
+            <svg id="circle">
+                <circle cx="50%" cy="50%" r="48%" />
+            </svg>
+        </div>
+    </div>
+</div>
+
     <div id="container-father" class="center">
         <div id="child1" class="center">
             <img src="media/icon-pequeno.png" alt="hubo un error">
@@ -53,8 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 session_start();
                 $_SESSION['usuario']=$usuario;
                 $_SESSION['viene']=$_POST['vienedelform'];
-                header('Location: http://anderolivos.thsite.top/mysql2/app/app.php');
-                die();
+                mysqli_close($mysqli);
+                echo "<script>
+                    document.getElementById('entrada').classList.add('center');
+                    document.getElementById('circle').classList.add('circle-animation');
+                    setTimeout(function() {
+                    window.location.href = 'app/app.php';}, 1500);
+                    </script>";
             }
             else{
                 echo "<p><strong class='error_login'>Error: </strong>usuario o contraseña incorrecta.</p>";

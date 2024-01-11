@@ -22,8 +22,8 @@
             <ul class="nav navbar-nav">
             <li><a href="app.php">Inicio</a></li>
             <li class="active"><a href="crear.php">Crear incidencia</a></li>
-            <li><a href="#incidencia-resuelta">Incidencias resueltas</a></li>
-            <li><a href="#incidencia-pendiente">Incidencias pendientes</a></li>
+            <li><a href="resuelto.php">Incidencias resueltas</a></li>
+            <li><a href="pendiente.php">Incidencias pendientes</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             <li><a href="app.php"><span class="glyphicon glyphicon-user"></span><?php echo "$usuario"?></a></li>
@@ -32,13 +32,17 @@
         </div>
     </nav>
 <div id="container-crea-incidencia">
+        <div id="exito">
+            <img src="../media/icon-correcto.png" alt="hubo un error">
+            <h3>Incidencia creada</h3>
+        </div>
             <h3>Crea una incidencia</h3>
             <form id="form-crea" method="POST" action="">
                 <div class="form-row">
                   <div class="form-group col-md-2">
                     <label for="planta">Planta <span class="obligatorio">(*)</span></label>
                     <select class="form-control form-control-sm" name="planta" id="form-planta" required>
-                        <option default value="0">0</option>
+                        <option selected value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                     </select>
@@ -46,7 +50,7 @@
                   <div class="form-group col-md-2">
                     <label for="aula">Aula <span class="obligatorio">(*)</span></label>
                     <select class="form-control form-control-sm" name="aula" id="form-aula" required>
-                        <option default value="1">1</option>
+                        <option selected  value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -93,7 +97,7 @@
                     </div>
                 </div>
               </form>
-        </div>
+
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $planta=htmlspecialchars($_POST["planta"]);
@@ -103,31 +107,36 @@
     $f_rev=htmlspecialchars($_POST["f_revision"]);
     $f_sol=htmlspecialchars($_POST["f_solucion"]);
     $comentario=htmlspecialchars($_POST["comentario"]);
-    if($f_rev==""){
-        $f_rev=NULL;
-    }
-    if($f_sol==""){
-        $f_sol=NULL;
-    }
-    if($comentario==""){
-        $comentario=NULL;
-    }
 
-    if(!empty($planta) && !empty($aula) && !empty($descripcion) && !empty($f_alta)){
-        include 'conexion.php';
-        $crea_incidencia="INSERT INTO incidencia VALUES ('".$planta."','".$aula."','".$descripcion."','".$f_alta."','".$f_rev."','".$f_sol."','".$comentario."')";
+    /*Comprobamos si los valos no obligatorios están vacíos*/
+
+    function checkeo_null(&$a){if($a==""){$a='NULL';}else{$a="'".$a."'";}}
+
+    checkeo_null($f_rev);checkeo_null($f_sol);checkeo_null($comentario);
+
+    /*Insertamos los datos en la tabla de la base de datos*/
+
+    if($planta!="" && $aula!="" && $descripcion!="" && $f_alta!=""){
+        include '../conexion.php';
+        $crea_incidencia="INSERT INTO incidencia (id,planta,aula,descripcion,f_alta,f_rev,f_sol,comentario) VALUES (NULL,".$planta.",".$aula.",'".$descripcion."','".$f_alta."',".$f_rev.",".$f_sol.",".$comentario.")";
         $añadido=mysqli_query($mysqli,$crea_incidencia);
         if (!$añadido) {
             die('Error en la consulta: ' . mysqli_error($mysqli));
         }
         mysqli_close($mysqli);
-        echo "<p>Añadido con éxito</p>";
+        echo "<script>
+            document.getElementById('exito').classList.add('creado','scale-in-center');
+            setTimeout(function() {
+                window.location.href = 'app.php';
+            }, 1500);
+          </script>";
     }
     else{
         echo "<p><strong class='error_login'>Error: </strong>rellene los campos obligatorios.</p>";
     }
 }
 ?>
+        </div>
 <script>
     var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
