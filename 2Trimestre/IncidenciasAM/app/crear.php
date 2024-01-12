@@ -72,7 +72,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="inputAddress2">Fecha Alta <span class="obligatorio">(*)</span></label>
-                        <input class="form-control form-control-sm" type="date" id="f_alta" name="f_alta" min="" required>
+                        <input class="form-control form-control-sm" type="date" id="f_alta" name="f_alta" min="" required value="">
                       </div>
                 </div>
                 <div class="form-row">
@@ -145,6 +145,7 @@
 
         today = yyyy + '-' + mm + '-' + dd;
         document.getElementById('f_alta').min = today;
+        document.getElementById('f_alta').value = today;
 </script>
 </body>
 </html>
