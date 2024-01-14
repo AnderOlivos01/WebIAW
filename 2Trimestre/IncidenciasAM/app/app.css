@@ -38,3 +38,7 @@ body{
 .thead-dark{
   background-color: #ff5233 !important;
 }
+
+.btn-group{
+  z-index: -1 !important;
+}

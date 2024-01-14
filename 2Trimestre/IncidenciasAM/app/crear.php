@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<?php include('verifica_session.php'); ?>
+<?php include 'verifica_session.php'; ?>
 
     <nav id="navegador" class="navbar navbar-inverse">
         <div class="container-fluid">
