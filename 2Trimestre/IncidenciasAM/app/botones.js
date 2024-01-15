@@ -4,8 +4,11 @@ function borrar_incidencia(id) {
         type: 'POST',
         data: { id: id },
         success: function () {
-            alert("Borrado con éxito");
-            location.reload();
+            document.getElementById('borrado_exito').classList.add('borrado','scale-in-center');
+            setTimeout(function() {
+                location.reload();
+            }, 1500);
+            
         },
         error: function () {
             alert('Error al borrar incidencia:');
