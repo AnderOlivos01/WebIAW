@@ -12,7 +12,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <body>
 <script src="botones.js"></script>
-<?php include 'verifica_session.php'; ?>
+<?php include 'verifica_session.php';include('../conexion.php'); ?>
+<?php 
+    $todas_consultas='SELECT * FROM incidencia';
+    $res_todas_consultas=mysqli_query($mysqli,$todas_consultas);
+    $consulta_pendiente='SELECT * FROM incidencia WHERE f_sol is NULL';
+    $res_consulta_pendiente=mysqli_query($mysqli,$consulta_pendiente);
+    $resuelta_consultas='SELECT * FROM incidencia WHERE f_sol is not NULL';
+    $res_resuelta_consultas=mysqli_query($mysqli,$resuelta_consultas);
+?>
     <!--APLIACIÓN-->
 
     <div id="container_father">
@@ -28,15 +36,23 @@
                     <li><a href="pendiente.php">Incidencias pendientes</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="app.php"><span class="glyphicon glyphicon-user"></span><?php echo "$usuario"?></a></li>
+                    <li><a href="app.php"><span style="margin-right: 10px;" class="glyphicon glyphicon-user"></span><?php echo "$usuario"?></a></li>
                     <li><a href="../index.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
                 </ul>
             </div>
         </nav> 
+
+        <div id="recuento">
+            <p><strong>Incidencias Totales:</strong> <?php echo ($res_todas_consultas->num_rows); ?></p>
+            <p><strong>Incidencias Pendientes:</strong> <?php echo ($res_consulta_pendiente->num_rows); ?></p>
+            <p><strong>Incidencias Resueltas:</strong> <?php echo ($res_resuelta_consultas->num_rows); ?></p>
+        </div>
         <div id="container-incidencias">
             <div id="container-incidencia-todo">
                 <h2 class="texto-centrado">Todas las incidencias</h2>
-                <table class='table'>
+                <?php
+                    if($res_todas_consultas->num_rows>0){
+                        echo "<table class='table'>
                         <thead class='thead-dark'>
                             <tr>
                             <th scope='col'>ID</th>
@@ -50,12 +66,7 @@
                             <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                <?php
-                    include('../conexion.php');
-                    $todas_consultas='SELECT * FROM incidencia';
-                    $res_todas_consultas=mysqli_query($mysqli,$todas_consultas);
-                    if($res_todas_consultas->num_rows>0){
+                        <tbody>";
                         for($i=0;$i<$res_todas_consultas->num_rows;$i++){
                             $fila = $res_todas_consultas->fetch_assoc();
                             echo "<tr>
@@ -67,7 +78,7 @@
                             <td>".$fila['f_rev']."</td>
                             <td>".$fila['f_sol']."</td>
                             <td>".$fila['comentario']."</td>
-                            <td><div class='btn-group'>
+                            <td><div>
                             <button type='button' class='btn btn-danger' onclick='borrar_incidencia(".$fila['id'].")'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
                             <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z'></path>
@@ -79,16 +90,18 @@
                             </div></td>
                             </tr>";                     
                         }
+                        echo "</tbody>
+                        </table>";
                     }else{
-                        echo "<p>No hay ninguna incidencia</p>";
+                        echo "<p style='text-align:center;'>No hay ninguna incidencia</p>";
                     }
                 ?>
-                </tbody>
-                    </table>
             </div>
             <div id="container-incidencia-pendiente">
             <h2 class="texto-centrado">Incidencias pendientes</h2>
-            <table class='table'>
+            <?php
+                    if($res_consulta_pendiente->num_rows>0){
+                        echo "<table class='table'>
                         <thead class='thead-dark'>
                             <tr>
                             <th scope='col'>ID</th>
@@ -102,11 +115,7 @@
                             <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                <?php
-                    $consulta_pendiente='SELECT * FROM incidencia WHERE f_sol is NULL';
-                    $res_consulta_pendiente=mysqli_query($mysqli,$consulta_pendiente);
-                    if($res_consulta_pendiente->num_rows>0){
+                        <tbody>";
                         for($i=0;$i<$res_consulta_pendiente->num_rows;$i++){
                             $fila_pendiente = $res_consulta_pendiente->fetch_assoc();
                             echo "<tr>
@@ -118,8 +127,8 @@
                             <td>".$fila_pendiente['f_rev']."</td>
                             <td>".$fila_pendiente['f_sol']."</td>
                             <td>".$fila_pendiente['comentario']."</td>
-                            <td><div class='btn-group'>
-                            <button type='button' class='btn btn-danger' onclick='borrar_incidencia(".$fila['id'].")'>
+                            <td><div>
+                            <button type='button' class='btn btn-danger' onclick='borrar_incidencia(".$fila_pendiente['id'].")'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
                             <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z'></path>
                             <path d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z'></path>
@@ -130,16 +139,19 @@
                             </div></td>
                             </tr>";                     
                         }
+                        echo "</tbody>
+                        </table>";
                     }else{
-                        echo "<p>No hay incidencias pendientes</p>";
+                        echo "<p style='text-align:center;'>No hay incidencias pendientes</p>";
                     }
                 ?>   
-                </tbody>
-                    </table>         
+                         
             </div>
             <div id="incidencia-resuelta">
             <h2 class="texto-centrado">Incidencias resueltas</h2>
-            <table class='table'>
+            <?php
+                    if($res_resuelta_consultas->num_rows>0){
+                        echo "<table class='table'>
                         <thead class='thead-dark'>
                             <tr>
                             <th scope='col'>ID</th>
@@ -153,11 +165,7 @@
                             <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                <?php
-                    $resuelta_consultas='SELECT * FROM incidencia WHERE f_sol is not NULL';
-                    $res_resuelta_consultas=mysqli_query($mysqli,$resuelta_consultas);
-                    if($res_resuelta_consultas->num_rows>0){
+                        <tbody>";
                         for($i=0;$i<$res_resuelta_consultas->num_rows;$i++){
                             $fila_resuelta = $res_resuelta_consultas->fetch_assoc();
                             echo "<tr>
@@ -169,7 +177,7 @@
                             <td>".$fila_resuelta['f_rev']."</td>
                             <td>".$fila_resuelta['f_sol']."</td>
                             <td>".$fila_resuelta['comentario']."</td>
-                            <td><div class='btn-group'>
+                            <td><div>
                             <button type='button' class='btn btn-danger' onclick='borrar_incidencia(".$fila_resuelta['id'].")'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
                             <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z'></path>
@@ -181,14 +189,16 @@
                             </div></td>
                             </tr>";                     
                         }
+                        echo "</tbody>
+                        </table>";
                     }else{
-                        echo "<p>No hay incidencias resueltas</p>";
+                        echo "<p style='text-align:center;'>No hay incidencias resueltas</p>";
                     }
                 ?>
-                </tbody>
-                    </table>
+                
             </div>
         </div>
     </div>
+
 </body>
 </html>

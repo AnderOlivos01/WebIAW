@@ -36,9 +36,20 @@ body{
 }
 
 .thead-dark{
-  background-color: #ff5233 !important;
+  background-color: cadetblue !important;
 }
 
 .btn-group{
-  z-index: -1 !important;
+  z-index: -20 !important;
+}
+
+#recuento{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#recuento>p{
+  margin: 0 10px 0 10px;
 }
