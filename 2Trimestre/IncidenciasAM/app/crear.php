@@ -12,6 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<script src="botones.js"></script>
 <?php include 'verifica_session.php'; ?>
 
     <nav id="navegador" class="navbar navbar-inverse">
@@ -31,11 +32,12 @@
             </ul>
         </div>
     </nav>
-<div id="container-crea-incidencia">
-        <div id="exito">
+    <div id="exito">
             <img src="../media/icon-correcto.png" alt="hubo un error">
             <h3>Incidencia creada</h3>
         </div>
+
+<div id="container-crea-incidencia">
             <h2>Crear incidencia</h2>
             <form id="form-crea" method="POST" action="">
                 <div class="form-row">
@@ -124,12 +126,7 @@
             die('Error en la consulta: ' . mysqli_error($mysqli));
         }
         mysqli_close($mysqli);
-        echo "<script>
-            document.getElementById('exito').classList.add('creado','scale-in-center');
-            setTimeout(function() {
-                window.location.href = 'app.php';
-            }, 1500);
-          </script>";
+        echo "<script>crear_incidencia()</script>";
     }
     else{
         echo "<p><strong class='error_login'>Error: </strong>rellene los campos obligatorios.</p>";
