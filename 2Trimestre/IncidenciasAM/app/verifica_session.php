@@ -5,7 +5,7 @@
         $usuario=$_SESSION['usuario'];
     }
     else{
-        header('Location: http://anderolivos.thsite.top/mysql2/index.php');
+        header('Location: http://anderolivos.thsite.top/IncidenciasAM');
         session_abort();
         die();
     }

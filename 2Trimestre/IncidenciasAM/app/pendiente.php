@@ -42,7 +42,6 @@
                         echo "<table class='table'>
                         <thead class='thead-dark'>
                             <tr>
-                            <th scope='col'>ID</th>
                             <th scope='col'>Aula</th>
                             <th scope='col'>Planta</th>
                             <th scope='col'>Descripción</th>
@@ -57,7 +56,6 @@
                         for($i=0;$i<$res_consulta_pendiente->num_rows;$i++){
                             $fila_pendiente = $res_consulta_pendiente->fetch_assoc();
                             echo "<tr>
-                            <th scope='row'>".$fila_pendiente['id']."</th>
                             <td>".$fila_pendiente['aula']."</td>
                             <td>".$fila_pendiente['planta']."</td>
                             <td>".$fila_pendiente['descripcion']."</td>

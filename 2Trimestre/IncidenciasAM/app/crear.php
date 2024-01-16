@@ -44,24 +44,24 @@
                   <div class="form-group col-md-2">
                     <label for="planta">Planta <span class="obligatorio">(*)</span></label>
                     <select class="form-control form-control-sm" name="planta" id="form-planta" required>
-                        <option selected value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        <option selected value="0">Planta baja</option>
+                        <option value="1">Primera planta</option>
+                        <option value="2">Segunda planta</option>
                     </select>
                   </div>
                   <div class="form-group col-md-2">
                     <label for="aula">Aula <span class="obligatorio">(*)</span></label>
                     <select class="form-control form-control-sm" name="aula" id="form-aula" required>
-                        <option selected  value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
+                        <option selected  value="1">Aula 1</option>
+                        <option value="2">Aula 2</option>
+                        <option value="3">Aula 3</option>
+                        <option value="4">Aula 4</option>
+                        <option value="5">Aula 5</option>
+                        <option value="6">Aula 6</option>
+                        <option value="7">Aula 7</option>
+                        <option value="8">Aula 8</option>
+                        <option value="9">Aula 9</option>
+                        <option value="10">Aula 10</option>
                     </select>
                   </div>
                 </div>

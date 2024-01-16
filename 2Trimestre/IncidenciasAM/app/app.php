@@ -107,7 +107,6 @@
                         echo "<table class='table'>
                         <thead class='thead-dark'>
                             <tr>
-                            <th scope='col'>ID</th>
                             <th scope='col'>Aula</th>
                             <th scope='col'>Planta</th>
                             <th scope='col'>Descripción</th>
@@ -122,7 +121,6 @@
                         for($i=0;$i<$res_todas_consultas->num_rows;$i++){
                             $fila = $res_todas_consultas->fetch_assoc();
                             echo "<tr>
-                            <th scope='row'>".$fila['id']."</th>
                             <td>".$fila['aula']."</td>
                             <td>".$fila['planta']."</td>
                             <td>".$fila['descripcion']."</td>
@@ -160,7 +158,6 @@
                         echo "<table class='table'>
                         <thead class='thead-dark'>
                             <tr>
-                            <th scope='col'>ID</th>
                             <th scope='col'>Aula</th>
                             <th scope='col'>Planta</th>
                             <th scope='col'>Descripción</th>
@@ -175,7 +172,6 @@
                         for($i=0;$i<$res_consulta_pendiente->num_rows;$i++){
                             $fila_pendiente = $res_consulta_pendiente->fetch_assoc();
                             echo "<tr>
-                            <th scope='row'>".$fila_pendiente['id']."</th>
                             <td>".$fila_pendiente['aula']."</td>
                             <td>".$fila_pendiente['planta']."</td>
                             <td>".$fila_pendiente['descripcion']."</td>
@@ -213,7 +209,6 @@
                         echo "<table class='table'>
                         <thead class='thead-dark'>
                             <tr>
-                            <th scope='col'>ID</th>
                             <th scope='col'>Aula</th>
                             <th scope='col'>Planta</th>
                             <th scope='col'>Descripción</th>
@@ -228,7 +223,6 @@
                         for($i=0;$i<$res_resuelta_consultas->num_rows;$i++){
                             $fila_resuelta = $res_resuelta_consultas->fetch_assoc();
                             echo "<tr>
-                            <th scope='row'>".$fila_resuelta['id']."</th>
                             <td>".$fila_resuelta['aula']."</td>
                             <td>".$fila_resuelta['planta']."</td>
                             <td>".$fila_resuelta['descripcion']."</td>
