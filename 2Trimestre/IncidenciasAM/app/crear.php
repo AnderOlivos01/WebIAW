@@ -80,12 +80,12 @@
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="inputCity">Fecha Revisión</label>
-                        <input class="form-control form-control-sm" type="date" name="f_revision">
+                        <input class="form-control form-control-sm" type="date" id="f_revision" name="f_revision" min="">
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="inputCity">Fecha Solución</label>
-                        <input class="form-control form-control-sm" type="date" name="f_solucion">
+                        <input class="form-control form-control-sm" type="date" id="f_solucion" name="f_solucion" min="">
                     </div>
 
                     <div class="form-group col-md-4">
@@ -143,6 +143,11 @@
         today = yyyy + '-' + mm + '-' + dd;
         document.getElementById('f_alta').min = today;
         document.getElementById('f_alta').value = today;
+
+        var valorAlta = document.getElementById('f_alta').value;
+
+        document.getElementById('f_revision').min=valorAlta;
+        document.getElementById('f_solucion').min=valorAlta;
 </script>
 </body>
 </html>
