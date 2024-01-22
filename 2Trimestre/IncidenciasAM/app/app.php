@@ -39,7 +39,7 @@
                     <li><a href="pendiente.php">Incidencias pendientes</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="app.php"><span style="margin-right: 10px;" class="glyphicon glyphicon-user"></span><?php echo "$usuario"?></a></li>
+                    <li><a href="app.php"><span class="glyphicon glyphicon-user"></span><?php echo "$usuario"?></a></li>
                     <li><a href="../index.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
                 </ul>
             </div>
@@ -59,9 +59,6 @@
                 <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalLabel">Editar incidencia</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
                 <div class="modal-body">
                     <form action="" method="post">
