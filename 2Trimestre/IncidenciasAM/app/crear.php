@@ -44,24 +44,24 @@
                   <div class="form-group col-md-2">
                     <label for="planta">Planta <span class="obligatorio">(*)</span></label>
                     <select class="form-control form-control-sm" name="planta" id="form-planta" required>
-                        <option selected value="0">Planta baja</option>
-                        <option value="1">Primera planta</option>
-                        <option value="2">Segunda planta</option>
+                        <option selected value=0>Planta baja</option>
+                        <option value=1>Primera planta</option>
+                        <option value=2>Segunda planta</option>
                     </select>
                   </div>
                   <div class="form-group col-md-2">
                     <label for="aula">Aula <span class="obligatorio">(*)</span></label>
                     <select class="form-control form-control-sm" name="aula" id="form-aula" required>
-                        <option selected  value="1">Aula 1</option>
-                        <option value="2">Aula 2</option>
-                        <option value="3">Aula 3</option>
-                        <option value="4">Aula 4</option>
-                        <option value="5">Aula 5</option>
-                        <option value="6">Aula 6</option>
-                        <option value="7">Aula 7</option>
-                        <option value="8">Aula 8</option>
-                        <option value="9">Aula 9</option>
-                        <option value="10">Aula 10</option>
+                        <option selected  value=1>Aula 1</option>
+                        <option value=2>Aula 2</option>
+                        <option value=3>Aula 3</option>
+                        <option value=4>Aula 4</option>
+                        <option value=5>Aula 5</option>
+                        <option value=6>Aula 6</option>
+                        <option value=7>Aula 7</option>
+                        <option value=8>Aula 8</option>
+                        <option value=9>Aula 9</option>
+                        <option value=10>Aula 10</option>
                     </select>
                   </div>
                 </div>
@@ -120,7 +120,10 @@
 
     if($planta!="" && $aula!="" && $descripcion!="" && $f_alta!=""){
         include '../conexion.php';
-        $crea_incidencia="INSERT INTO incidencia (id,planta,aula,descripcion,f_alta,f_rev,f_sol,comentario) VALUES (NULL,".$planta.",".$aula.",'".$descripcion."','".$f_alta."',".$f_rev.",".$f_sol.",".$comentario.")";
+        $consulta_id_aula="select id from aula where aula=".$aula." and planta='".$planta."'";
+        $id_aula=mysqli_query($mysqli,$consulta_id_aula);
+        $id_aula=mysqli_fetch_assoc($id_aula);
+        $crea_incidencia="INSERT INTO incidencia (id,aula,descripcion,f_alta,f_rev,f_sol,comentario) VALUES (NULL,".$id_aula['id'].",'".$descripcion."','".$f_alta."',".$f_rev.",".$f_sol.",".$comentario.")";
         $añadido=mysqli_query($mysqli,$crea_incidencia);
         if (!$añadido) {
             die('Error en la consulta: ' . mysqli_error($mysqli));
@@ -136,18 +139,18 @@
         </div>
 <script>
     var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0');
-        var yyyy = today.getFullYear();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
 
-        today = yyyy + '-' + mm + '-' + dd;
-        document.getElementById('f_alta').min = today;
-        document.getElementById('f_alta').value = today;
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById('f_alta').min = today;
+    document.getElementById('f_alta').value = today;
 
-        var valorAlta = document.getElementById('f_alta').value;
+    var valorAlta = document.getElementById('f_alta').value;
 
-        document.getElementById('f_revision').min=valorAlta;
-        document.getElementById('f_solucion').min=valorAlta;
+    document.getElementById('f_revision').min=valorAlta;
+    document.getElementById('f_solucion').min=valorAlta;
 </script>
 </body>
 </html>

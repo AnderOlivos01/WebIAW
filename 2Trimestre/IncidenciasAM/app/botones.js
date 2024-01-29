@@ -25,3 +25,12 @@ function crear_incidencia(){
                 window.location.href = 'app.php';
             }, 1500);
 }
+
+function editar_incidencia() {
+    $('#container-incidencias').hide();
+    $('#recuento').hide();
+    document.getElementById('editar_exito').classList.add('borrado','scale-in-center');
+    setTimeout(function() {
+        location.reload();
+    }, 1500);
+}

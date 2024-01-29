@@ -54,11 +54,11 @@ body{
   margin: 0 10px 0 10px;
 }
 
-#borrado_exito{
+#borrado_exito,#editar_exito{
   display: none;
 }
 
-#container-trash{
+.container-trash{
   background-color: #ffb2b2;
   border-radius: 50%;
   width:fit-content ;
