@@ -67,15 +67,19 @@
                 <div class="modal-body">
                     <form action="" method="post">
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Fecha revisión:</label>
+                        <label for="descripcion" class="col-form-label">Descripción:</label>
+                        <input type="text" class="form-control" id="form-comentario" name="descripcion">
+                    </div>
+                    <div class="form-group">
+                        <label for="f_revision" class="col-form-label">Fecha revisión:</label>
                         <input class="form-control form-control-sm" type="date" name="f_revision">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">Fecha solución:</label>
+                        <label for="f_solucion" class="col-form-label">Fecha solución:</label>
                         <input class="form-control form-control-sm" type="date" name="f_solucion">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">Comentario:</label>
+                        <label for="comentario" class="col-form-label">Comentario:</label>
                         <input type="text" class="form-control" id="form-comentario" name="comentario" placeholder="Todo solucionado...">
                     </div>
                     </form>

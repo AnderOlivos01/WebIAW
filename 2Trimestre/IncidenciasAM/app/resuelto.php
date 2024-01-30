@@ -31,12 +31,19 @@
                 </ul>
             </div>
         </nav> 
+
+        <div id="borrado_exito">
+            <div class="container-trash"><img src="../media/icon-trash.png" alt="hubo un error"></div>
+            <h3>Incidencia borrada</h3>
+        </div>
+
+
     <div id="container-incidencias">
     <div id="incidencia-resuelta">
             <h2 class="texto-centrado">Incidencias resueltas</h2>
                 <?php
                     include('../conexion.php');
-                    $resuelta_consultas='SELECT * FROM incidencia WHERE f_sol is not NULL';
+                    $resuelta_consultas='SELECT i.id,a.aula,p.nombre,i.descripcion,i.f_alta,i.f_rev,i.f_sol,i.comentario FROM incidencia i,aula a,planta p WHERE i.aula=a.id AND a.planta=p.id AND f_sol is not NULL';
                     $res_resuelta_consultas=mysqli_query($mysqli,$resuelta_consultas);
                     if($res_resuelta_consultas->num_rows>0){
                         echo "<table class='table'>
@@ -57,7 +64,7 @@
                             $fila_resuelta = $res_resuelta_consultas->fetch_assoc();
                             echo "<tr>
                             <td>".$fila_resuelta['aula']."</td>
-                            <td>".$fila_resuelta['planta']."</td>
+                            <td>".$fila_resuelta['nombre']."</td>
                             <td>".$fila_resuelta['descripcion']."</td>
                             <td>".$fila_resuelta['f_alta']."</td>
                             <td>".$fila_resuelta['f_rev']."</td>

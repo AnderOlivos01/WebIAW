@@ -31,12 +31,19 @@
                 </ul>
             </div>
         </nav> 
+
+        <div id="borrado_exito">
+            <div class="container-trash"><img src="../media/icon-trash.png" alt="hubo un error"></div>
+            <h3>Incidencia borrada</h3>
+        </div>
+
+
     <div id="container-incidencias">
     <div id="container-incidencia-pendiente">
             <h2 class="texto-centrado">Incidencias pendientes</h2>
                 <?php
                     include('../conexion.php');
-                    $consulta_pendiente='SELECT * FROM incidencia WHERE f_sol is NULL';
+                    $consulta_pendiente='SELECT i.id,a.aula,p.nombre,i.descripcion,i.f_alta,i.f_rev,i.f_sol,i.comentario FROM incidencia i,aula a,planta p WHERE i.aula=a.id AND a.planta=p.id AND f_sol is NULL';
                     $res_consulta_pendiente=mysqli_query($mysqli,$consulta_pendiente);
                     if($res_consulta_pendiente->num_rows>0){
                         echo "<table class='table'>
@@ -57,7 +64,7 @@
                             $fila_pendiente = $res_consulta_pendiente->fetch_assoc();
                             echo "<tr>
                             <td>".$fila_pendiente['aula']."</td>
-                            <td>".$fila_pendiente['planta']."</td>
+                            <td>".$fila_pendiente['nombre']."</td>
                             <td>".$fila_pendiente['descripcion']."</td>
                             <td>".$fila_pendiente['f_alta']."</td>
                             <td>".$fila_pendiente['f_rev']."</td>
