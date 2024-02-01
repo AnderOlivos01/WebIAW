@@ -17,20 +17,6 @@ function borrar_incidencia(id) {
         }
     });
 }
-
-function crear_incidencia(){
-    document.getElementById('exito').classList.add('creado','scale-in-center');
-    document.getElementById('container-crea-incidencia').style.display='none';
-    setTimeout(function() {
-                window.location.href = 'app.php';
-            }, 1500);
-}
-
-function editar_incidencia() {
-    $('#container-incidencias').hide();
-    $('#recuento').hide();
-    document.getElementById('editar_exito').classList.add('borrado','scale-in-center');
-    setTimeout(function() {
-        location.reload();
-    }, 1500);
+function editar_incidencia(id) {
+    document.getElementById('editarModal').classList.add('modal-open','in');
 }
