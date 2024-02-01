@@ -53,7 +53,7 @@
         </div>
 
         <div id="editar_exito">
-            <div class="container-trash"><img src="../media/icon-correcto.png" alt="hubo un error"></div>
+            <img src="../media/icon-correcto.png" alt="hubo un error">
             <h3>Incidencia editada correctamente</h3>
         </div>
 
@@ -68,15 +68,15 @@
                     <form action="" method="post">
                     <div class="form-group">
                         <label for="descripcion" class="col-form-label">Descripción:</label>
-                        <input type="text" class="form-control" id="form-comentario" name="descripcion">
+                        <input type="text" class="form-control" id="form-descripcion" name="descripcion">
                     </div>
                     <div class="form-group">
                         <label for="f_revision" class="col-form-label">Fecha revisión:</label>
-                        <input class="form-control form-control-sm" type="date" name="f_revision">
+                        <input class="form-control form-control-sm" id="form-frev" type="date" name="f_revision">
                     </div>
                     <div class="form-group">
                         <label for="f_solucion" class="col-form-label">Fecha solución:</label>
-                        <input class="form-control form-control-sm" type="date" name="f_solucion">
+                        <input class="form-control form-control-sm" id="form-fsol" type="date" name="f_solucion">
                     </div>
                     <div class="form-group">
                         <label for="comentario" class="col-form-label">Comentario:</label>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <button type="button" id="boton-editar" class="btn btn-primary">Guardar cambios</button>
                 </div>
                 </div>
             </div>

@@ -35,7 +35,7 @@
     <div id="exito">
             <img src="../media/icon-correcto.png" alt="hubo un error">
             <h3>Incidencia creada</h3>
-        </div>
+    </div>
 
 <div id="container-crea-incidencia">
             <h2>Crear incidencia</h2>
