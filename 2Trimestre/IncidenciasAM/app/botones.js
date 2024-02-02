@@ -40,6 +40,7 @@ function editar_incidencia(id) {
             type: 'POST',
             data: { "id": id,"descripcion":des,"f_rev":revision,"f_sol":solucion,"comentario":comentario},
             success: function () {
+                document.getElementsByClassName('modal-backdrop').hide();
                 $('#container-incidencias').hide();
                 $('#recuento').hide();
                 $('#editarModal').hide();
