@@ -13,7 +13,7 @@ function borrar_incidencia(id) {
             
         },
         error: function () {
-            alert('Error al borrar incidencia:');
+            console.log('Error al borrar incidencia.');
         }
     });
 }
