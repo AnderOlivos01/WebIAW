@@ -29,7 +29,7 @@ function crear_incidencia(){
 
 function editar_incidencia(id) {
     document.getElementById('Modal').classList.add('modal-open','in');
-    document.getElementById('boton-editar').addEventListener("click",function(){
+    document.getElementsByClassName('boton-editar').addEventListener("click",function(){
         var des = document.getElementById('form-descripcion').value;
         var revision = document.getElementById('form-frev').value;
         var solucion = document.getElementById('form-fsol').value;
