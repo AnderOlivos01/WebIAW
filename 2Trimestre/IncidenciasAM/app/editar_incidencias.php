@@ -2,11 +2,11 @@
 include '../conexion.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['id'])) {
-        $id_editar = $_POST['id'];
-        $descripcion_editar = $_POST['descripcion'];
-        $f_rev_editar = $_POST['f_rev'];
-        $f_sol_editar = $_POST['f_sol'];
-        $comentario_editar = $_POST['comentario'];
+        $id_editar = mysqli_real_escape_string($mysqli,htmlspecialchars($_POST['id']));
+        $descripcion_editar =mysqli_real_escape_string($mysqli,htmlspecialchars($_POST['descripcion']));
+        $f_rev_editar = mysqli_real_escape_string($mysqli,htmlspecialchars($_POST['f_rev']));
+        $f_sol_editar = mysqli_real_escape_string($mysqli,htmlspecialchars($_POST['f_sol']));
+        $comentario_editar = mysqli_real_escape_string($mysqli,htmlspecialchars($_POST['comentario']));
 
         function checkeo_null(&$a) {
             if ($a == "") {

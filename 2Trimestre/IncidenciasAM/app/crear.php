@@ -101,14 +101,15 @@
               </form>
 
 <?php
+    include '../conexion.php';
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    $planta=htmlspecialchars($_POST["planta"]);
-    $aula=htmlspecialchars($_POST["aula"]);
-    $descripcion=htmlspecialchars($_POST["descripcion"]);
-    $f_alta=htmlspecialchars($_POST["f_alta"]);
-    $f_rev=htmlspecialchars($_POST["f_revision"]);
-    $f_sol=htmlspecialchars($_POST["f_solucion"]);
-    $comentario=htmlspecialchars($_POST["comentario"]);
+    $planta=mysqli_real_escape_string($mysqli,htmlspecialchars($_POST["planta"]));
+    $aula=mysqli_real_escape_string($mysqli,htmlspecialchars($_POST["aula"]));
+    $descripcion=mysqli_real_escape_string($mysqli,htmlspecialchars($_POST["descripcion"]));
+    $f_alta=mysqli_real_escape_string($mysqli,htmlspecialchars($_POST["f_alta"]));
+    $f_rev=mysqli_real_escape_string($mysqli,htmlspecialchars($_POST["f_revision"]));
+    $f_sol=mysqli_real_escape_string($mysqli,htmlspecialchars($_POST["f_solucion"]));
+    $comentario=mysqli_real_escape_string($mysqli,htmlspecialchars($_POST["comentario"]));
 
     /*Comprobamos si los valos no obligatorios están vacíos*/
 
@@ -119,7 +120,6 @@
     /*Insertamos los datos en la tabla de la base de datos*/
 
     if($planta!="" && $aula!="" && $descripcion!="" && $f_alta!=""){
-        include '../conexion.php';
         $consulta_id_aula="select id from aula where aula=".$aula." and planta='".$planta."'";
         $id_aula=mysqli_query($mysqli,$consulta_id_aula);
         $id_aula=mysqli_fetch_assoc($id_aula);

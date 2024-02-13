@@ -28,7 +28,7 @@ function crear_incidencia(){
 }
 
 function editar_incidencia(id) {
-    document.getElementById('editarModal').classList.add('modal-open','in');
+    document.getElementById('Modal').classList.add('modal-open','in');
     document.getElementById('boton-editar').addEventListener("click",function(){
         var des = document.getElementById('form-descripcion').value;
         var revision = document.getElementById('form-frev').value;
@@ -43,7 +43,7 @@ function editar_incidencia(id) {
                 document.getElementsByClassName('modal-backdrop').hide();
                 $('#container-incidencias').hide();
                 $('#recuento').hide();
-                $('#editarModal').hide();
+                $('#Modal').hide();
                 document.getElementById('editar_exito').classList.add('borrado','scale-in-center');
                 setTimeout(function() {
                     location.reload();
