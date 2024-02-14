@@ -29,7 +29,7 @@ function crear_incidencia(){
 
 function editar_incidencia(id) {
     document.getElementById('Modal').classList.add('modal-open','in');
-    document.getElementsByClassName('boton-editar').addEventListener("click",function(){
+    document.querySelector('.boton-editar').addEventListener("click", function() {
         var des = document.getElementById('form-descripcion').value;
         var revision = document.getElementById('form-frev').value;
         var solucion = document.getElementById('form-fsol').value;
@@ -40,7 +40,7 @@ function editar_incidencia(id) {
             type: 'POST',
             data: { "id": id,"descripcion":des,"f_rev":revision,"f_sol":solucion,"comentario":comentario},
             success: function () {
-                document.getElementsByClassName('modal-backdrop').hide();
+                $('.modal-backdrop').hide();
                 $('#container-incidencias').hide();
                 $('#recuento').hide();
                 $('#Modal').hide();
@@ -50,7 +50,7 @@ function editar_incidencia(id) {
                 }, 1500);
             },
             error: function () {
-                console.log('Error al borrar incidencia');
+                console.log('Error al editar incidencia');
             }
         })
     })
