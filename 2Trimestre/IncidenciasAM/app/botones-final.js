@@ -28,23 +28,24 @@ function crear_incidencia(){
 }
 
 function editar_incidencia(id) {
-    document.getElementById('Modal').classList.add('modal-open','in');
-    document.querySelector('.boton-editar').addEventListener("click", function() {
+    $('#container-modal').show();
+    $('#container-incidencias').hide();
+    $('#recuento').hide();
+    
+    document.getElementById("boton-actualizar-incidencia").addEventListener("click",function(){
         var des = document.getElementById('form-descripcion').value;
         var revision = document.getElementById('form-frev').value;
         var solucion = document.getElementById('form-fsol').value;
         var comentario = document.getElementById('form-comentario').value;
-
         $.ajax({
             url: 'editar_incidencias.php',
             type: 'POST',
             data: { "id": id,"descripcion":des,"f_rev":revision,"f_sol":solucion,"comentario":comentario},
             success: function () {
-                $('.modal-backdrop').hide();
+                $('#container-modal').hide();
                 $('#container-incidencias').hide();
                 $('#recuento').hide();
-                $('#Modal').hide();
-                document.getElementById('editar_exito').classList.add('borrado','scale-in-center');
+                document.getElementById('editar-exito').classList.add('borrado','scale-in-center');
                 setTimeout(function() {
                     location.reload();
                 }, 1500);
@@ -54,4 +55,11 @@ function editar_incidencia(id) {
             }
         })
     })
+}
+
+function cerrar_modal(){
+    $('#container-modal').hide();
+    $('#container-incidencias').show();
+    $('#recuento').show();
+    $('.form-control').empty();
 }

@@ -7,4 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resultado_borrado=mysqli_execute_query($mysqli,$borrar);
     }
 }
+else{
+    header('Location: http://anderolivos.thsite.top/IncidenciasAM');
+    session_abort();
+    die();
+}
 ?>

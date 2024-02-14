@@ -90,6 +90,44 @@ animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) forward
   }
 }
 
-.modal{
-  color: black;
+#editar-exito{
+  display: none;
+}
+
+#editarexito>h3{
+  font-weight: bold;
+}
+
+#container-modal{
+  display: none;
+  flex-direction: column;
+  width: 50%;
+  align-self: center;
+  background-color: cadetblue;
+  padding: 40px;
+  border-radius: 30px;
+  color: white;
+}
+
+#modal-cabecera{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#modal-cabecera-salir{
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  font-size: xx-large;
+}
+
+#modal-botones{
+  align-self: end;
+  margin-top: 10px;
 }
